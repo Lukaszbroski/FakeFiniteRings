@@ -5,62 +5,59 @@
 #ifndef FAKEFINITERING_H
 #define FAKEFINITERING_H
 #include <iostream>
-
+using namespace std;
 
 class FakeFiniteRing {
-public:
+private:
     //the value of the FakeFiniteRing
-    int value = 0;
+    int value;
     //the order of the FakeFiniteRing
-    int order = 0;
+    int order;
+
+public:
 
     //returns the order of the FakeFiniteRing
-    const int getOrder();
+    int getOrder() const;
 
     //returns the value of the FakeFiniteRing
-    const int getValue();
+    int getValue() const;
 
-    void setOrder();
+    void setOrder(int ord);
 
-    void setValue();
+    void setValue(int val);
 
     //Constructor for the FakeFiniteRing, Takes 2 ints for value and order
-    FakeFiniteRing(int val, int ord);
-
-    friend bool compareTo(FakeFiniteRing ring2);
+    FakeFiniteRing(int val = 0, int ord = 0);
 
     //Overloaded + function creating a new FakeFiniteRing adding the two sides together
-    friend FakeFiniteRing operator+(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    FakeFiniteRing operator + (const FakeFiniteRing &ffr) const;
 
     //Overloaded - function creating a new FakeFiniteRing subtracting the right from the left side
-    friend FakeFiniteRing operator-(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    FakeFiniteRing operator - (const FakeFiniteRing &ffr) const;
 
     //overloaded * function creating a new FakeFiniteRing by multiplying the rings together
-    friend FakeFiniteRing operator*(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    FakeFiniteRing operator * (const FakeFiniteRing &ffr) const;
 
     //overloaded == function that will return whether two FakeFiniteRings are congruent
-    friend bool operator==(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    bool operator == (const FakeFiniteRing &ffr) const;
 
     //overloaded != function that will return true if the two FakeFiniteRings are not congruent
-    friend bool operator!=(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    bool operator != (const FakeFiniteRing &ffr) const;
 
     //overloaded += function that will create a new FakeFiniteRing by adding to the previous FakeFiniteRing
-    friend FakeFiniteRing operator+=(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    FakeFiniteRing& operator += (const FakeFiniteRing &ffr);
 
     //overloaded -= function that will create a new FakeFiniteRing by subtracting the right from the left FakeFiniteRing
-    friend FakeFiniteRing operator-=(const FakeFiniteRing &left, const FakeFiniteRing &right);
+    FakeFiniteRing& operator -= (const FakeFiniteRing &ffr);
 
     //overloaded *= function that will create a new FakeFiniteRing by multiplying the new FakeFiniteRing by the old one
-    friend FakeFiniteRing operator*=(const FakeFiniteRing &left, const FakeFiniteRing &right);
-
-    //overloaded = function that will create a new FakeFiniteRing with a shortcut instead of calling a constructor
-    friend FakeFiniteRing &operator=(const FakeFiniteRing &ring) = delete;
+    FakeFiniteRing& operator *= (const FakeFiniteRing &ffr);
 
     //overloaded >> function that will input the FakeFiniteRings
-    friend istream &operator>>(istream &input, FakeFiniteRing &ring);
+    friend istream& operator >> (istream &input, FakeFiniteRing &ffr);
 
     //overloaded << function that will output the FakeFiniteRings to a readable format
-    friend ostream &operator<<(ostream &output const FakeFiniteRing &ring);
+    friend ostream& operator << (ostream &output, const FakeFiniteRing &ffr);
 
 };
 
